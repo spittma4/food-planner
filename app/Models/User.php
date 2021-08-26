@@ -41,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static $addRules = array (
+        'name' => 'required|string',
+        'email' => 'required|email'
+    );
+
+    public static $editRules = array (
+        'id' => 'required',
+        'name' => 'string',
+        'email' => 'email'
+    );
 }
