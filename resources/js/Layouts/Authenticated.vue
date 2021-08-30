@@ -18,6 +18,9 @@
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
+                                <BreezeNavLink :href="'/log-viewer'">
+                                    View Logs
+                                </BreezeNavLink>
                             </div>
                         </div>
 
@@ -119,6 +122,6 @@ export default {
         return {
             showingNavigationDropdown: false,
         }
-    },
+    }
 }
 </script>
