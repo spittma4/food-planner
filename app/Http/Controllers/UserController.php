@@ -54,13 +54,14 @@ class UserController extends BaseController
 
     /**
      * Display the specified resource.
+     * NOTE: This is using implicit binding to auto-inject the User model
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return User
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return User::find($id);
+        return $user;
     }
 
     /**
@@ -78,12 +79,11 @@ class UserController extends BaseController
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  User $user (implicit route model binding)
+     * @return User
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
 
         $this->validateInput($request->all(), User::$editRules);
 
@@ -101,11 +101,11 @@ class UserController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User $user (implicit route model binding)
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id)->delete();
+        $user->delete();
     }
 }
