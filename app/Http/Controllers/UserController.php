@@ -45,7 +45,7 @@ class UserController extends BaseController
      */
     public function store(Request $request)
     {
-        $this->validateInput($request->all(), User::$addRules);
+        $request->validate(User::$addRules);
 
         try {
             $user = User::create($request->all());
@@ -90,7 +90,7 @@ class UserController extends BaseController
     public function update(Request $request, User $user)
     {
 
-        $this->validateInput($request->all(), User::$editRules);
+        $request->validate(User::$editRules);
 
         try {
             $user->update($request->all());
