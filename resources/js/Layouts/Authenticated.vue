@@ -18,6 +18,9 @@
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
+                                <BreezeNavLink :href="route('manageUsers')" :active="route().current('manageUsers')">
+                                    Manage Users
+                                </BreezeNavLink>
                                 <BreezeNavLink :href="'/log-viewer'">
                                     View Logs
                                 </BreezeNavLink>

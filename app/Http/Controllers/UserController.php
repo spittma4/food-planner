@@ -6,6 +6,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Inertia\Inertia;
 
 class UserController extends BaseController
 {
@@ -18,7 +19,10 @@ class UserController extends BaseController
     public function index(Request $request)
     {
         //TODO: Implement index filters
-        return User::get();
+        $users = User::get();
+        return Inertia::render('Users/ManageUsers', [
+            'users' => $users
+        ]);
     }
 
     /**
@@ -29,7 +33,8 @@ class UserController extends BaseController
      */
     public function create(Request $request)
     {
-        //
+        return Inertia::render('Users/CreateUser');
+
     }
 
     /**
