@@ -29,13 +29,18 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::namespace('App\Http\Controllers')->group(function() {
-//    Route::resource('users', 'UserController');
+    // TODO: Add views, etc.
+    Route::resource('foodItems', 'FoodItemController');
+
+
+    Route::resource('users', 'UserController');
+    //TODO: Figure out what we need to do to keep this a resource route with named routes... Maybe this is fine?
     Route::group(['prefix' => 'users'], function() {
         Route::get('/', 'UserController@index')->name('manageUsers');
         Route::get('create', 'UserController@create')->name('createUser');
         Route::post('store', 'UserController@store')->name('storeUser');
         Route::get('edit', 'UserController@edit')->name('editUser');
-        Route::post('update', 'UserController@update')->name('updateUser');
+        Route::put('update', 'UserController@update')->name('updateUser');
     });
 
 });
