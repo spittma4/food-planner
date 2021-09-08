@@ -31,7 +31,7 @@ class FoodItemFactory extends Factory
         $carbs = $this->faker->randomDigit(1, 50);
         $fats = $this->faker->randomDigit(1, 50);
 
-        $calories = ($carbs * 3) + ($proteins * 4) + ($fats * 5);
+        $calories = ($carbs * 4) + ($proteins * 4) + ($fats * 9);
 
         return [
             'name' => $this->faker->colorName() . ' food',
