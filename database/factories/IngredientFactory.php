@@ -2,20 +2,21 @@
 
 namespace Database\Factories;
 
-use App\Models\FoodItem;
+use App\Models\Ingredient;
+use App\Models\Store;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class FoodItemFactory extends Factory
+class IngredientFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = FoodItem::class;
+    protected $model = Ingredient::class;
 
     /**
      * Define the model's default state.
@@ -26,6 +27,7 @@ class FoodItemFactory extends Factory
     {
         // Find possible user_ids
         $maxUserId = User::get()->count();
+        $userId = $this->faker->numberBetween(1, $maxUserId);
 
         $proteins = $this->faker->randomDigit(1, 50);
         $carbs = $this->faker->randomDigit(1, 50);
@@ -35,7 +37,9 @@ class FoodItemFactory extends Factory
 
         return [
             'name' => $this->faker->colorName() . ' food',
-            'user_id' => $this->faker->randomDigit(0, $maxUserId),
+            'user_id' => $userId,
+            'store_id' => Store::factory()->create(['user_id' => $userId])->id,
+            'cost' => $this->faker->randomFloat(2, 0.10, 100),
             'calories' => $calories,
             'proteins' => $proteins,
             'carbs' => $carbs,

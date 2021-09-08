@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FoodItem extends Model
+class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $table = 'food_items';
+    protected $table = 'ingredients';
 
     protected $fillable = array (
         'name',
         'user_id',
+        'store_id',
+        'cost',
         'calories',
         'proteins',
         'carbs',
@@ -25,6 +27,8 @@ class FoodItem extends Model
     protected $addRules = array (
         'name' => 'required|string|max:255',
         'user_id' => 'required|integer|min:0',
+        'store_id' => 'required|integer|min:0',
+        'cost' => 'nullable|decimal',
         'calories' => 'integer|min:0',
         'proteins' => 'integer|min:0',
         'carbs' => 'integer|min:0',
@@ -36,6 +40,8 @@ class FoodItem extends Model
     protected $editRules = array (
         'name' => 'required|string|max:255',
         'user_id' => 'required|integer|min:0',
+        'store_id' => 'required|integer|min:0',
+        'cost' => 'nullable|decimal',
         'calories' => 'integer|min:0',
         'proteins' => 'integer|min:0',
         'carbs' => 'integer|min:0',
@@ -50,5 +56,9 @@ class FoodItem extends Model
 
     public function user() {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function store() {
+        return $this->belongsTo('App\Models\Store');
     }
 }
